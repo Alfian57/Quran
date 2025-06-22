@@ -11,46 +11,64 @@ const Header = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [isShowSearch, setIsShowSearch] = useState(
-    searchParams.get("isShowSearch") === "true" || false,
-  );
-  const [search, setSearch] = useState(searchParams.get("search") || "");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [isShowSearch, setIsShowSearch] = useState(false);
+  const [search, setSearch] = useState("");
+
+  // Effect untuk menyinkronkan state dengan URL params
+  // Ini menangani initial load, navigasi maju/mundur, dan menampilkan search bar dengan benar
+  useEffect(() => {
+    setSearch(searchParams.get("search") || "");
+    setIsShowSearch(
+      searchParams.get("isShowSearch") === "true" || pathname === "/home",
+    );
+  }, [pathname, searchParams]);
 
   const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
+    (params: URLSearchParams, name: string, value: string) => {
+      const newParams = new URLSearchParams(params.toString());
+      if (value) {
+        newParams.set(name, value);
+      } else {
+        newParams.delete(name);
+      }
+      return newParams.toString();
     },
-    [searchParams],
+    [],
   );
 
+  // Debounced effect untuk memperbarui URL
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedSearch(search);
+      const currentUrlSearch = searchParams.get("search") || "";
+
+      // Hanya trigger navigasi jika kata kunci pencarian berbeda dari yang ada di URL
+      if (search !== currentUrlSearch) {
+        if (pathname !== "/home") {
+          // Jika mencari di halaman selain /home, redirect ke /home dengan query pencarian
+          router.push(`/home?search=${search}&isShowSearch=true`);
+        } else {
+          // Di /home, cukup perbarui search parameter
+          const newQueryString = createQueryString(
+            searchParams,
+            "search",
+            search,
+          );
+          router.push(`${pathname}?${newQueryString}`);
+        }
+      }
     }, 500);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [search]);
-
-  useEffect(() => {
-    if (pathname !== "/home" && debouncedSearch) {
-      console.log("Redirecting to home with search:", debouncedSearch);
-      router.push(`/home?search=${debouncedSearch}&isShowSearch=true`);
-      return;
-    }
-
-    if (pathname === "/home" && debouncedSearch !== "") {
-      router.push(`/home?search=${debouncedSearch}`);
-    }
-  }, [pathname, debouncedSearch, router, createQueryString]);
+  }, [search, pathname, searchParams, router, createQueryString]);
 
   const toggleSearch = () => {
     setIsShowSearch(!isShowSearch);
+  };
+
+  const clearSearch = () => {
+    setSearch("");
   };
 
   return (
@@ -103,7 +121,7 @@ const Header = () => {
           isShowSearch ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="my-6 flex gap-3 px-6">
+        <div className="relative my-6 flex gap-3 px-6">
           <Input
             type="text"
             placeholder="Enter surah..."
@@ -111,6 +129,14 @@ const Header = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+          {search && (
+            <button
+              onClick={clearSearch}
+              className="absolute top-1/2 right-10 -translate-y-1/2 text-gray-500"
+            >
+              <X width={18} height={18} />
+            </button>
+          )}
         </div>
       </div>
     </div>
