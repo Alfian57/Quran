@@ -1,6 +1,7 @@
 "use client";
 
 import useAyahAudio from "@/store/useAyahAudio";
+import { Pause } from "lucide-react";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
@@ -8,7 +9,7 @@ interface AudioPlayerProps {
   audioUrl: string | undefined;
 }
 
-const AudioPlayer = ({ audioUrl }: AudioPlayerProps) => {
+const AudioPlayer =  ({ audioUrl }: AudioPlayerProps) => {
   const { currentAudioUrl, setCurrentAudioUrl } = useAyahAudio();
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -53,14 +54,24 @@ const AudioPlayer = ({ audioUrl }: AudioPlayerProps) => {
 
   return (
     <div>
-      <Image
-        src={"/play-icon.png"}
-        alt="play"
-        width={24}
-        height={24}
-        className="cursor-pointer"
-        onClick={togglePlayPause}
-      />
+      {isPlaying ? (
+        <Pause
+          width={24}
+          height={24}
+          className="cursor-pointer"
+          onClick={togglePlayPause}
+          color="#672cbc"
+        />
+      ) : (
+        <Image
+          src={"/play-icon.png"}
+          alt="play"
+          width={24}
+          height={24}
+          className="cursor-pointer"
+          onClick={togglePlayPause}
+        />
+      )}
     </div>
   );
 };
