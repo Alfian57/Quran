@@ -2,7 +2,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import SurahTab from "./surah-tab";
 
-const Page = async () => {
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) => {
   return (
     <div className="px-6 pb-24">
       <h3 className="text-secondary text-lg font-medium">Assalamualaikum</h3>
@@ -42,7 +46,7 @@ const Page = async () => {
           <TabsTrigger value="juz">Juz</TabsTrigger>
         </TabsList>
         <TabsContent value="surah">
-          <SurahTab />
+          <SurahTab searchParams={searchParams} />
         </TabsContent>
         <TabsContent value="juz">
           Make changes to your account here. para
