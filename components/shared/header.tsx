@@ -28,12 +28,6 @@ const Header = () => {
   );
 
   useEffect(() => {
-    setSearch("");
-    setDebouncedSearch("");
-    setIsShowSearch(false);
-  }, [pathname]);
-
-  useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
     }, 500);
