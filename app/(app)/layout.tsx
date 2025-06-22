@@ -8,7 +8,7 @@ type Props = {
 
 const AppLayout = ({ children }: Props) => {
   return (
-    <div className="h-svh">
+    <div className="relative h-full">
       <Header />
       {children}
       <BottomNavigation />

@@ -29,7 +29,7 @@ function BottomNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed right-0 bottom-0 left-0 flex items-center justify-around border-t border-gray-200 bg-white p-4 shadow-lg">
+    <nav className="fixed bottom-0 left-1/2 flex w-full max-w-[420px] -translate-x-1/2 items-center justify-around border-t border-gray-200 bg-white p-4 shadow-lg">
       {navItems.map(({ href, icon, alt }) => {
         const isActive =
           navItems
