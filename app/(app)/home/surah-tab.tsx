@@ -8,30 +8,24 @@ interface SurahTabProps {
 }
 
 const SurahTab = async ({ searchParams }: SurahTabProps) => {
-  const surahList = await getAllSurah();
   const resolvedSearchParams = await searchParams;
+  const surahList = await getAllSurah(
+    resolvedSearchParams.search as string | undefined,
+  );
 
   return (
     <div>
       <Suspense fallback={<ItemSkeleton />}>
-        {surahList
-          .filter((surah) => {
-            const searchQuery = resolvedSearchParams.search;
-            if (!searchQuery || typeof searchQuery !== "string") return true;
-            return surah.englishName
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase());
-          })
-          .map((surah, index) => (
-            <Item
-              key={index}
-              number={surah.number}
-              englishName={surah.englishName}
-              name={surah.name}
-              revelationType={surah.revelationType}
-              numberOfAyahs={surah.numberOfAyahs}
-            />
-          ))}
+        {surahList.map((surah, index) => (
+          <Item
+            key={index}
+            number={surah.number}
+            englishName={surah.englishName}
+            name={surah.name}
+            revelationType={surah.revelationType}
+            numberOfAyahs={surah.numberOfAyahs}
+          />
+        ))}
       </Suspense>
     </div>
   );

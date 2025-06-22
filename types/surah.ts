@@ -47,3 +47,20 @@ export interface DetailedSurahApiResponse {
   status: string;
   data: DetailedSurah[];
 }
+
+export interface SearchMatch {
+  number: number;
+  text: string;
+  edition: Edition;
+  surah: Surah;
+  numberInSurah: number;
+}
+
+export interface SearchApiResponse {
+  code: number;
+  status: string;
+  data: {
+    count: number;
+    matches: SearchMatch[];
+  };
+}

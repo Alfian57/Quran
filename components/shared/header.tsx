@@ -14,8 +14,6 @@ const Header = () => {
   const [isShowSearch, setIsShowSearch] = useState(false);
   const [search, setSearch] = useState("");
 
-  // Effect untuk menyinkronkan state dengan URL params
-  // Ini menangani initial load, navigasi maju/mundur, dan menampilkan search bar dengan benar
   useEffect(() => {
     setSearch(searchParams.get("search") || "");
     setIsShowSearch(
@@ -36,18 +34,14 @@ const Header = () => {
     [],
   );
 
-  // Debounced effect untuk memperbarui URL
   useEffect(() => {
     const handler = setTimeout(() => {
       const currentUrlSearch = searchParams.get("search") || "";
 
-      // Hanya trigger navigasi jika kata kunci pencarian berbeda dari yang ada di URL
       if (search !== currentUrlSearch) {
         if (pathname !== "/home") {
-          // Jika mencari di halaman selain /home, redirect ke /home dengan query pencarian
           router.push(`/home?search=${search}&isShowSearch=true`);
         } else {
-          // Di /home, cukup perbarui search parameter
           const newQueryString = createQueryString(
             searchParams,
             "search",
