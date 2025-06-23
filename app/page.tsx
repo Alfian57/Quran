@@ -11,7 +11,7 @@ const page = async () => {
         </h3>
       </div>
 
-      <div className="relative">
+      <div className="relative flex flex-col items-center justify-center">
         <Image
           src={"/splash-screen.png"}
           alt="splash-screen"
@@ -19,8 +19,14 @@ const page = async () => {
           height={450}
         />
         <Link href={"/home"}>
-          <button className="relative bottom-8 rounded-[30px] bg-[#F9B091] px-12 py-3 text-lg font-semibold text-white shadow-md hover:bg-[#F9B091]/90 active:bg-[#F9B091]/80">
-            Get Started
+          <button className="relative bottom-8 flex items-center gap-3 rounded-[30px] bg-[#F9B091] px-12 py-3 text-lg font-semibold text-white shadow-md hover:bg-[#F9B091]/90 active:bg-[#F9B091]/80">
+            <Image
+              src={"/google-icon.png"}
+              alt="google-icon"
+              width={24}
+              height={24}
+            />
+            Login with Google
           </button>
         </Link>
       </div>

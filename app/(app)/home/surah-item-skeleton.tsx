@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ItemSkeleton = async () => {
+const SurahItemSkeleton = async () => {
   return (
     <div className="border-secondary flex items-center justify-between border-b py-5">
       <div className="flex items-center gap-4">
@@ -27,4 +27,4 @@ const ItemSkeleton = async () => {
   );
 };
 
-export default ItemSkeleton;
+export default SurahItemSkeleton;

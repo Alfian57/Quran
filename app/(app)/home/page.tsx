@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import SurahTab from "./surah-tab";
+import JuzTab from "./juz-tab";
 
 const Page = async ({
   searchParams,
@@ -49,7 +50,7 @@ const Page = async ({
           <SurahTab searchParams={searchParams} />
         </TabsContent>
         <TabsContent value="juz">
-          Make changes to your account here. para
+          <JuzTab />
         </TabsContent>
       </Tabs>
     </div>

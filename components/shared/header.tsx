@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
+import ProfileDrawer from "./profile-drawer";
 
 const Header = () => {
   const router = useRouter();
@@ -69,12 +70,7 @@ const Header = () => {
     <div className="mb-3">
       <header className="flex items-center justify-between px-6 pt-6">
         <div className="flex items-center gap-4">
-          <Image
-            src={"/menu-icon.png"}
-            alt="menu-icon"
-            width={24}
-            height={24}
-          />
+          <ProfileDrawer />
           <h1 className="text-primary text-xl font-bold">Quran App</h1>
         </div>
         <div className="relative h-6 w-6">

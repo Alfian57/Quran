@@ -1,7 +1,7 @@
 import { getAllSurah } from "./_actions/getAllSurah";
 import { Suspense } from "react";
-import ItemSkeleton from "./item-skeleton";
-import Item from "./item";
+import SurahItemSkeleton from "./surah-item-skeleton";
+import SurahItem from "./surah-item";
 
 interface SurahTabProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -15,9 +15,9 @@ const SurahTab = async ({ searchParams }: SurahTabProps) => {
 
   return (
     <div>
-      <Suspense fallback={<ItemSkeleton />}>
+      <Suspense fallback={<SurahItemSkeleton />}>
         {surahList.map((surah, index) => (
-          <Item
+          <SurahItem
             key={index}
             number={surah.number}
             englishName={surah.englishName}

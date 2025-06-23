@@ -42,7 +42,7 @@ const AboutPage = async () => {
       <div className="mb-8">
         <h3 className="text-primary mb-1 text-xl font-semibold">Our Mission</h3>
         <div className="bg-purple/5 rounded-[10px] pb-4">
-          <p className="text-secondary leading-relaxed">
+          <p className="text-secondary text-justify leading-relaxed">
             To make the Holy Quran accessible to everyone, everywhere. Our app
             provides a beautiful and intuitive way to read, listen, and
             understand the Quran in your daily life.
@@ -88,7 +88,9 @@ const AboutPage = async () => {
             >
               <div>
                 <h4 className="text-primary font-medium">{feature.title}</h4>
-                <p className="text-secondary text-sm">{feature.description}</p>
+                <p className="text-secondary text-justify text-sm">
+                  {feature.description}
+                </p>
               </div>
             </div>
           ))}
@@ -122,7 +124,7 @@ const AboutPage = async () => {
           Acknowledgments
         </h3>
         <div className="bg-purple/5 rounded-[10px] pb-4">
-          <p className="text-secondary text-sm leading-relaxed">
+          <p className="text-secondary text-justify text-sm leading-relaxed">
             We are grateful to the Islamic scholars and organizations who have
             made the Quran translations and recitations freely available.
             Special thanks to the Quran API providers and the open-source

@@ -7,7 +7,7 @@ const amiri = Amiri({
   weight: "700",
 });
 
-type ItemProps = {
+type SurahItemProps = {
   number: number;
   englishName: string;
   name: string;
@@ -15,13 +15,13 @@ type ItemProps = {
   numberOfAyahs: number;
 };
 
-const Item = async ({
+const SurahItem = async ({
   number,
   englishName,
   name,
   revelationType,
   numberOfAyahs,
-}: ItemProps) => {
+}: SurahItemProps) => {
   return (
     <div className="border-secondary flex items-center justify-between border-b py-5">
       <div className="flex items-center gap-4">
@@ -57,4 +57,4 @@ const Item = async ({
   );
 };
 
-export default Item;
+export default SurahItem;
