@@ -59,15 +59,17 @@ const Item = ({
       </div>
 
       <div className="mt-4 flex flex-col gap-3">
-        <span
-          className={`${amiri.className} text-purple text-end text-lg font-bold`}
-        >
-          {surahNumber != 1 && ayahNumber === 1
-            ? arabText
-                .replace("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم", "")
-                .trim()
-            : arabText}
-        </span>
+        <div className="flex justify-end rounded-lg bg-gray-50 p-4">
+          <span
+            className={`${amiri.className} text-purple w-full text-end text-lg font-bold`}
+          >
+            {surahNumber != 1 && ayahNumber === 1
+              ? arabText
+                  .replace("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم", "")
+                  .trim()
+              : arabText}
+          </span>
+        </div>
         <span className="text-purple">{englishText}</span>
       </div>
     </div>

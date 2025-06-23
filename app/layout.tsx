@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} mx-auto min-h-screen max-w-[420px] border-x border-gray-200`}
+        className={`${poppins.className} mx-auto min-h-dvh max-w-[420px] border-x border-gray-200`}
       >
         {children}
         <Toaster />

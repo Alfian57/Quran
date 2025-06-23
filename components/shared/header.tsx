@@ -17,9 +17,7 @@ const Header = () => {
 
   useEffect(() => {
     setSearch(searchParams.get("search") || "");
-    setIsShowSearch(
-      searchParams.get("isShowSearch") === "true" || pathname === "/home",
-    );
+    setIsShowSearch(searchParams.get("isShowSearch") === "true");
   }, [pathname, searchParams]);
 
   const createQueryString = useCallback(

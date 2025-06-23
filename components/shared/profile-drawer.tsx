@@ -21,18 +21,14 @@ const ProfileDrawer = () => {
       <DrawerContent className="fixed top-0 left-0 h-full w-80">
         <DrawerHeader>
           <DrawerTitle>Profile Menu</DrawerTitle>
-          <div className="mt-4 flex items-center gap-4 rounded-lg bg-gray-50 p-4">
+          <div className="mt-4 flex flex-col items-center justify-center gap-4 rounded-lg bg-gray-50 p-4">
             <Avatar className="h-18 w-18">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div className="flex-1">
+            <div className="flex-1 text-center">
               <h3 className="text-lg font-semibold">Ahmad Fauzi</h3>
               <p className="text-sm text-gray-600">ahmad.fauzi@email.com</p>
-              <div className="mt-1 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                <span className="text-xs text-gray-500">Online</span>
-              </div>
             </div>
           </div>
           <div className="mt-6 space-y-3">
